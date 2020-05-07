@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +42,8 @@ namespace Snake
 
     class Program
     {
+        private static int index;
+
         //draw the food
         static Position CreateFood(Position food, Random randomNumbersGenerator,
             Queue<Position> snakeElements, List<Position> obstacles)
