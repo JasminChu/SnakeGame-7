@@ -172,8 +172,8 @@ namespace Snake
                     Scoreboard.WriteScore(_scorecount, 0, 2);
                     Scoreboard.WriteAt("Your Remains Life", 0, 3);
                     Scoreboard.WriteAt(life.ToString(), 0, 4);
-                    Scoreboard.WriteAt("Your Level", 0, 5);
-                    Scoreboard.WriteAt(level.ToString(), 0, 6);
+                    Scoreboard.WriteAt("Your Level", 0, 8);
+                    Scoreboard.WriteAt(level.ToString(), 0, 9);
 
 
                     //Array which is a linear data structure is used 
@@ -423,13 +423,12 @@ namespace Snake
                                 if (_scorecount == 3 || _scorecount == 6 || _scorecount == 9)
                                 {
                                     level += 1;
-                                    foreach (Position position in snakeElements)
-                                    {
-                                        directions[0].col += 1;
-                                        directions[1].col -= 1;
-                                        directions[2].row += 1;
-                                        directions[3].row -= 1;
-                                    }
+                                    Scoreboard.WriteAt("Your Level", 0, 8);
+                                    Scoreboard.WriteAt(level.ToString(), 0, 9);
+                                    directions[0].col += 1;
+                                    directions[1].col -= 1;
+                                    directions[2].row += 1;
+                                    directions[3].row -= 1;
                                 }
                             }
 
@@ -479,13 +478,12 @@ namespace Snake
                                 if (_scorecount == 3 || _scorecount == 6 || _scorecount == 9)
                                 {
                                     level += 1;
-                                    foreach (Position position in snakeElements)
-                                    {
-                                        directions[0].col += 1;
-                                        directions[1].col -= 1;
-                                        directions[2].row += 1;
-                                        directions[3].row -= 1;
-                                    }
+                                    Scoreboard.WriteAt("Your Level", 0, 8);
+                                    Scoreboard.WriteAt(level.ToString(), 0, 9);
+                                    directions[0].col += 1;
+                                    directions[1].col -= 1;
+                                    directions[2].row += 1;
+                                    directions[3].row -= 1;
                                 }
                             }
 
