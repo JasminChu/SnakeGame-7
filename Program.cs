@@ -299,6 +299,9 @@ namespace Snake
                             || (snakeNewHead.row >= Console.WindowHeight) || (snakeNewHead.col >= Console.WindowWidth)
                             || (snakeNewHead.col < 0) || (snakeNewHead.row < 0))
                             {
+                                //Remove the obstacles which the snake has eaten
+                                obstacles.Remove(snakeNewHead);
+                                
                                 //Game over sound will display if the snake die
                                 SoundPlayer player1 = new SoundPlayer();
                                 player1.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "/die.wav";
@@ -306,9 +309,6 @@ namespace Snake
                                 direction = right;
                                 snakeNewHead.row = 5;
                                 snakeNewHead.col = 0;
-
-                                //Remove the obstacles which the snake has eaten
-                                obstacles.Remove(snakeNewHead);
 
                                 //----------------------------------------life---------------------------------------
                                 //If user still have life
@@ -409,18 +409,9 @@ namespace Snake
                                     }
                                     Environment.Exit(0);
                                 }
-                                //feeding the snake
-                                //generate new position for the food
-                                food = CreateFood(food, randomNumbersGenerator, snakeElements, obstacles);
-                                lastFoodTime = Environment.TickCount;
-                                sleepTime--;
-
-                                Position obstacle = new Position();
-                                //generate new position for the obstacles
-                                obstacle = CreateObstacle(food, obstacle, randomNumbersGenerator, snakeElements, obstacles);
                                 
-                                 //----------------------------------------level---------------------------------------
-                                if (_scorecount == 3 || _scorecount == 6 || _scorecount == 9)
+                                //----------------------------------------level---------------------------------------
+                                if ((_scorecount >= 3 && _scorecount != 5) || (_scorecount >= 6 && _scorecount != 8) || _scorecount >= 9)
                                 {
                                     level += 1;
                                     Scoreboard.WriteAt("Your Level", 0, 8);
@@ -430,6 +421,16 @@ namespace Snake
                                     directions[2].row += 1;
                                     directions[3].row -= 1;
                                 }
+                                
+                                //feeding the snake
+                                //generate new position for the food
+                                food = CreateFood(food, randomNumbersGenerator, snakeElements, obstacles);
+                                lastFoodTime = Environment.TickCount;
+                                sleepTime--;
+
+                                Position obstacle = new Position();
+                                //generate new position for the obstacles
+                                obstacle = CreateObstacle(food, obstacle, randomNumbersGenerator, snakeElements, obstacles);
                             }
 
                             //JASMINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
@@ -468,14 +469,8 @@ namespace Snake
                                     }
                                     Environment.Exit(0);
                                 }
-
-
-                                Position obstacle = new Position();
-                                //generate new position for the obstacles
-                                obstacle = CreateObstacle(supriseFood, obstacle, randomNumbersGenerator, snakeElements, obstacles);
-                                
-                                 //----------------------------------------level---------------------------------------
-                                if (_scorecount == 3 || _scorecount == 6 || _scorecount == 9)
+                                //----------------------------------------level---------------------------------------
+                                if ((_scorecount >= 3 && _scorecount != 5) || (_scorecount >= 6 && _scorecount != 8) || _scorecount >= 9)
                                 {
                                     level += 1;
                                     Scoreboard.WriteAt("Your Level", 0, 8);
@@ -485,6 +480,11 @@ namespace Snake
                                     directions[2].row += 1;
                                     directions[3].row -= 1;
                                 }
+
+
+                                Position obstacle = new Position();
+                                //generate new position for the obstacles
+                                obstacle = CreateObstacle(supriseFood, obstacle, randomNumbersGenerator, snakeElements, obstacles);
                             }
 
                             else
